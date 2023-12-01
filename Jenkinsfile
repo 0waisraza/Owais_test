@@ -1,4 +1,4 @@
-
+flag= true
 pipeline {
 agent any
   environmnet{
@@ -7,6 +7,11 @@ agent any
 stages {
 stage('Build') {
 steps {
+  when{
+    expression{
+      flag==false
+    }
+  }
 echo 'Building..'
   echo "Building version $(NEW_VERSION)"
 // Here you can define commands for your build
