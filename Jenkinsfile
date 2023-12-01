@@ -20,4 +20,13 @@ echo 'Deploying....'
 }
 }
   }
+  post{
+    //The condition here will be executed
+    always{
+      echo'Post build condition running....'
+    }
+    failure{
+      echo'Post Action if Build Fail'
+    }
+  }
 }
