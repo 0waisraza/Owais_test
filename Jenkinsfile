@@ -1,4 +1,4 @@
-flag=true
+
 pipeline {
 agent any
   environmnet{
@@ -14,11 +14,6 @@ echo 'Building..'
 }
 stage('Test') {
 steps {
-  when{
-    expression{
-      flag==false
-    }
-  }
 echo 'Testing..'
 // Here you can define commands for your tests
 }
