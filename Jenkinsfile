@@ -8,6 +8,7 @@ stages {
 stage('Build') {
 steps {
 echo 'Building..'
+  echo "Building version $(NEW_VERSION)"
 // Here you can define commands for your build
 }
 }
