@@ -1,8 +1,10 @@
-
+flag=true
 pipeline {
 agent any
-  tools{
-    maven 'Maven'
+  parameters{
+    string(name: 'VERSION',defaultvalue:'',description:'version to deploy on prod')
+    choice(name: 'VERSION',choices:['1.1.0','1.2.0','1.3.0'],description:'')
+    booleanParam(name:'executeTests',defaultValue: true,description:'')
   }
   environment{
     NEW_VERSION = '1.3.0'
@@ -12,12 +14,15 @@ stage('Build') {
 steps {
  
 echo 'Building..'
-  echo "Building version ${NEW_VERSION}"
-// Here you can define commands for your build
-  sh "nvm install"
+ 
 }
 }
 stage('Test') {
+  when{
+    expression{
+      params.executeTests
+    }
+  }
 steps {
 echo 'Testing..'
 // Here you can define commands for your tests
